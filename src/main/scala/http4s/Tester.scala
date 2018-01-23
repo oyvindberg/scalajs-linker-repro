@@ -4,7 +4,8 @@ import org.parboiled2.Parser.DeliveryScheme.Throw
 import org.parboiled2._
 
 object Tester {
-  trait Helpers { this: Parser => /* will link if we change to `trait Helpers extends Parser` */
+//  trait Helpers extends Parser {
+  trait Helpers { this: Parser =>
     def a = rule { 3.times(b) }
     def b = rule { capture(CharPredicate.Digit) }
   }
@@ -15,7 +16,8 @@ object Tester {
     }.a.run()
 
   def two(s: String): String =
-    new Parser /* will link if we add `with Helpers` (even though not used) */ {
+//    new Parser with Helpers {
+    new Parser  {
       def input = s
       def c = rule { capture("foo") }
     }.c.run()
